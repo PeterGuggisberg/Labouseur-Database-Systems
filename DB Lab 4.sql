@@ -17,11 +17,11 @@ FROM products
 WHERE  in ((SELECT orders.aid
 	   FROM orders
 	   WHERE cid in (SELECT customers.cid
-		      FROM customers
-		      WHERE customers.city = 'Dallas'
-		     )
+		         FROM customers
+		         WHERE customers.city = 'Dallas'
+		        )
 	    )
-	  );
+	   );
 
 --3 Get the ids and names of customers who did not place an order through agent a01.
 SELECT customers.cid, customers.name
@@ -67,4 +67,8 @@ WHERE cid in (SELECT customers.city
 	      WHERE customers.city in ('Dallas', 'London')
 	     );
 
---8 
+--8 Check constraints are additional restrictions on the values to be inserted in or updated to a table. 
+-- The advantage to having check constraints in a database is that it provides additional checks to the data in the database. 
+-- For example, a datatype can be seen as a check. Check constraints place data value restrictions on the contents of a database using Boolean expressions (true, false, or unknown). 
+-- Using check constraints to find like datatypes in a database could be useful. A bad example of check constraints would be if you were checking data and the data values came back as unknown or not unknown. 
+-- Unkown and not unknown are the same and unknown data in a database usually isn't very helpful.
