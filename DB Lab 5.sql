@@ -10,7 +10,7 @@ WHERE agents.aid = orders.aid
     AND orders.cid = 'c002';
 
 --2 Show the ids of products ordered through any agent who makes at least one order for a customer in Dallas, sorted by pid from highest to lowest. Use joins; no subqueries.
-SELECT products.pid
+SELECT Distinct products.pid
 FROM products, orders, customers
 WHERE products.pid = orders.pid
     AND customers.cid = orders.cid
@@ -20,7 +20,7 @@ ORDER BY pid DESC;
 --3 Show the names of customers who have never placed an order. Use a subquery.
 SELECT distinct customers.name
 FROM customers
-WHERE not cid In (Select orders.cid
+WHERE cid nOT In (Select orders.cid
 	          From orders
 	         );
 
@@ -49,6 +49,6 @@ FROM customers, products
 WHERE customers.city In (select products.city 
 			 from products
 			 group by city
-			 order by count(quantity)
+			 order by count(quantity) ASC
 			 limit 1
 			);
