@@ -13,12 +13,12 @@ where customers.city in (select products.city
 			 limit 2
 			);
 
---2 Display the names of products whose priceUSD is strictly above the average priceUSD, in reverse-alphabetical order.
+--2 Display the names of products whose priceusd is strictly above the average priceusd, in reverse-alphabetical order.
 select products.name
 from products
-where priceUSD > (select avg(priceusd)
-		  from products
-		 )
+where products.priceusd > (select avg(products.priceusd)
+			   from products
+			  )
 Order by products.name DESC;
 
 --3 Display the customer name, pid ordered, and the total for all orders, sorted by total from high to low.
@@ -47,13 +47,13 @@ on products.pid = orders.pid
 where agents.city = 'Tokyo';
 
 --6 Write a query to check the accuracy of the totalusd column in the orders table.
-select (orders.qty *  products.priceUSD) * (1 - customers.discount/100), orders.totalusd
+select (orders.qty *  products.priceusd) * (1 - customers.discount/100), orders.totalusd
 from products
 right outer join orders
 on products.pid = orders.pid
 left outer join customers
 on customers.cid = orders.cid
-where (orders.qty * products.priceUSD) * (1 - customers.discount/100) = orders.totalusd;
+where (orders.qty * products.priceusd) * (1 - customers.discount/100) = orders.totalusd;
 
 --7 What’s the difference between a LEFT OUTER JOIN and a RIGHT OUTER JOIN?
 -- Left Outer Join- References the left most table first to match the data.
