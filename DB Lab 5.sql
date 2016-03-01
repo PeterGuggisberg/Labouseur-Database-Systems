@@ -48,7 +48,7 @@ SELECT distinct customers.name, customers.city
 FROM customers, products
 WHERE customers.city In (select products.city 
 			 from products
-			 group by city
-			 order by count(quantity) ASC
+			 group by products.city
+			 order by count(products.quantity) ASC
 			 limit 1
 			);
