@@ -55,5 +55,15 @@ left outer join customers
 on customers.cid = orders.cid
 where (orders.qty * products.priceUSD) * (1 - customers.discount/100) = orders.totalusd;
 
---7 What’s the difference between a LEFT OUTER JOIN and a RIGHT OUTER JOIN? Give example queries in SQL to demonstrate. (Feel free to use the CAP3 database to make your points here).
-
+--7 What’s the difference between a LEFT OUTER JOIN and a RIGHT OUTER JOIN?
+-- Left Outer Join- References the left most table first to match the data.
+select agents.name
+from agents
+Left outer join orders
+on agents.aid = orders.aid;
+-- Right Outer Join- References the right most table first to match the data.
+select agents.name
+from agents
+Right outer join orders
+on agents.aid = orders.aid;
+-- The outputs are different because of the order in which the tables were referenced.
